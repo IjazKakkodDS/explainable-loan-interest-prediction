@@ -1,19 +1,20 @@
 Folder PATH listing for volume OS
 Volume serial number is 2453-B2C4
 C:.
-¦   gitignore
+¦   .gitignore
 ¦   LICENSE
 ¦   Procfile
 ¦   project_structure.txt
 ¦   README.md
 ¦   requirements.txt
 ¦   runtime.txt
+¦   shap_explainer.ipynb
 ¦   
 +---app
 ¦       app.py
 ¦       features_list.pkl
 ¦       model.pkl
-¦       requirements.txt
+¦       shap_explainer.pkl
 ¦       streamlit_engineered_ml.ipynb
 ¦       
 +---data
