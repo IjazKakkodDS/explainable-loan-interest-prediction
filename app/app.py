@@ -14,9 +14,9 @@ st.set_page_config(
 )
 
 # Load model, features, and SHAP explainer
-model = joblib.load("model.pkl")
-features_list = joblib.load("features_list.pkl")
-explainer = joblib.load("shap_explainer.pkl")
+model = joblib.load("app/model.pkl")
+features_list = joblib.load("app/features_list.pkl")
+explainer = joblib.load("app/shap_explainer.pkl")
 
 purpose_mapping = {
     'Debt Consolidation': 'debt_consolidation',
