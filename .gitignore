@@ -1,19 +1,33 @@
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *.so
 
-.ipynb_checkpoints
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Environment files
 .env
-.venv
+.venv/
 *.env
 
+# Ignore data files that may be too large (manual override possible with `git add -f`)
 *.csv
-*.xlsx
 *.tsv
-# *.pkl
+*.xlsx
 *.h5
 *.joblib
+*.pkl  # uncomment if you *don’t* want to version model files
 
+# Logs and OS files
 *.log
 .DS_Store
 Thumbs.db
+
+# VS Code project settings (optional)
+.vscode/
+
+# Streamlit sharing logs or cache (optional but helpful)
+.streamlit/
+
+# LFS handled files - tracked by .gitattributes anyway
