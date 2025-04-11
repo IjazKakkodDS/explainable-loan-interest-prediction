@@ -13,10 +13,12 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Load model, features, and SHAP explainer
+# Load model and features (SHAP explainer will be recreated dynamically)
 model = joblib.load("app/model.pkl")
 features_list = joblib.load("app/features_list.pkl")
-explainer = joblib.load("app/shap_explainer.pkl")
+
+# Recreate SHAP explainer dynamically
+explainer = shap.Explainer(model)
 
 purpose_mapping = {
     'Debt Consolidation': 'debt_consolidation',
