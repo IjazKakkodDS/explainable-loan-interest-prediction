@@ -1,9 +1,0 @@
-streamlit
-pandas
-joblib
-matplotlib
-seaborn
-plotly
-numpy
-sweetviz
-xgboost
