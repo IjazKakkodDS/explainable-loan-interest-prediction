@@ -1,0 +1,12 @@
+{
+  "1_rows": {
+    "rows": 1,
+    "total_ms": 5.8,
+    "per_record_ms": 5.811
+  },
+  "100_rows": {
+    "rows": 100,
+    "total_ms": 18.2,
+    "per_record_ms": 0.182
+  }
+}

@@ -59,7 +59,12 @@ if theme == "Dark":
         </style>
     """, unsafe_allow_html=True)
 
-# Prepare input
+# Prepare input.
+# Categorical values must match the training-time one-hot encoding exactly.
+# features_list.pkl contains "term_36 months", "term_60 months",
+# "verification_status_Not Verified", "verification_status_Source Verified",
+# "verification_status_Verified" -- so pass the raw selectbox values without
+# lowercasing or underscore-replacing them.
 user_input = {
     "loan_amnt": loan_amnt,
     "installment": installment,
@@ -67,9 +72,9 @@ user_input = {
     "revol_util": revol_util,
     "total_rec_int": total_rec_int,
     "inq_last_6mths": inq_last_6mths,
-    "term": term.lower().replace(' ', '_'),
+    "term": term,
     "purpose": purpose_mapping[purpose],
-    "verification_status": verification_status.lower().replace(' ', '_')
+    "verification_status": verification_status,
 }
 
 input_df = pd.DataFrame(user_input, index=[0])

@@ -1,0 +1,51 @@
+# Explainable Credit Pricing Intelligence System
+# .dockerignore
+
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Jupyter / notebook artifacts
+.ipynb_checkpoints/
+*.ipynb
+
+# Large raw data files not needed by the API
+data/loan_data.csv
+data/interest_rate_non_engineered_df.csv
+
+# The 2K engineered sample is kept to support any runtime data needs
+# data/interest_rate_df_engineered.csv
+
+# Git metadata
+.git/
+.gitattributes
+.gitignore
+
+# Streamlit app (not part of API image)
+# Keep app/ because model.pkl, features_list.pkl, shap_explainer.pkl are there.
+# If you want to exclude the Streamlit UI itself:
+# app/app.py
+# app/streamlit_engineered_ml.ipynb
+
+# Notebooks
+notebooks/
+
+# Legacy source files not used by API
+src/imputation_functions.py
+src/stats_distributions.py
+sample_reduction.ipynb
+shap_explainer.ipynb
+project_structure.txt
+Procfile
+runtime.txt
+
+# Test files (not needed in image)
+tests/

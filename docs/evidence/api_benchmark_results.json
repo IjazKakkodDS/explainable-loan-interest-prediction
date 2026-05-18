@@ -1,0 +1,88 @@
+{
+  "system": {
+    "python_version": "3.13.1",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "timestamp": "2026-05-19T00:24:12",
+    "method": "FastAPI TestClient (in-process)",
+    "iterations_per_endpoint": 20,
+    "warmup_calls": 3
+  },
+  "endpoints": {
+    "health": {
+      "endpoint": "/health",
+      "method": "GET",
+      "iterations": 20,
+      "warmup_calls": 3,
+      "status_code": 200,
+      "mean_ms": 4.591,
+      "median_ms": 4.572,
+      "min_ms": 3.75,
+      "max_ms": 5.681,
+      "stdev_ms": 0.479,
+      "note": "In-process TestClient timing. No network overhead. Production latency would differ."
+    },
+    "predict_single": {
+      "endpoint": "/predict",
+      "method": "POST",
+      "iterations": 20,
+      "warmup_calls": 3,
+      "status_code": 200,
+      "mean_ms": 20.901,
+      "median_ms": 20.973,
+      "min_ms": 18.745,
+      "max_ms": 25.643,
+      "stdev_ms": 1.581,
+      "note": "In-process TestClient timing. No network overhead. Production latency would differ."
+    },
+    "explain_single": {
+      "endpoint": "/explain",
+      "method": "POST",
+      "iterations": 20,
+      "warmup_calls": 3,
+      "status_code": 200,
+      "mean_ms": 26.22,
+      "median_ms": 26.362,
+      "min_ms": 22.823,
+      "max_ms": 29.449,
+      "stdev_ms": 1.858,
+      "note": "In-process TestClient timing. No network overhead. Production latency would differ."
+    }
+  },
+  "batch_endpoints": {
+    "batch_10": {
+      "endpoint": "/batch-predict",
+      "method": "POST",
+      "iterations": 20,
+      "warmup_calls": 3,
+      "status_code": 200,
+      "mean_ms": 21.307,
+      "median_ms": 21.168,
+      "min_ms": 17.277,
+      "max_ms": 28.684,
+      "stdev_ms": 2.484,
+      "note": "In-process TestClient timing. No network overhead. Production latency would differ.",
+      "records_per_call": 10,
+      "per_record_ms": 2.1307
+    },
+    "batch_100": {
+      "endpoint": "/batch-predict",
+      "method": "POST",
+      "iterations": 20,
+      "warmup_calls": 3,
+      "status_code": 200,
+      "mean_ms": 21.845,
+      "median_ms": 22.415,
+      "min_ms": 18.893,
+      "max_ms": 24.729,
+      "stdev_ms": 1.6,
+      "note": "In-process TestClient timing. No network overhead. Production latency would differ.",
+      "records_per_call": 100,
+      "per_record_ms": 0.2184
+    }
+  },
+  "notes": [
+    "All measurements are in-process via TestClient. No network round-trip.",
+    "Model and explainer are loaded once; subsequent calls benefit from warm cache.",
+    "Production deployment latency would include network, serialisation, and hosting overhead."
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "system": {
+    "python_version": "3.13.1",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "timestamp": "2026-05-19T00:24:02"
+  },
+  "model_load": {
+    "path": "app/model.pkl",
+    "load_time_ms": 26.648
+  },
+  "prediction_latency": {
+    "1_rows": {
+      "rows": 1,
+      "iterations": 5,
+      "avg_wall_time_ms": 2.284,
+      "per_record_us": 2284.22
+    },
+    "10_rows": {
+      "rows": 10,
+      "iterations": 5,
+      "avg_wall_time_ms": 2.165,
+      "per_record_us": 216.452
+    },
+    "100_rows": {
+      "rows": 100,
+      "iterations": 5,
+      "avg_wall_time_ms": 2.173,
+      "per_record_us": 21.727
+    }
+  },
+  "shap_latency": {
+    "1_rows": {
+      "rows": 1,
+      "total_ms": 4.054,
+      "per_record_ms": 4.054
+    },
+    "10_rows": {
+      "rows": 10,
+      "total_ms": 15.226,
+      "per_record_ms": 1.523
+    },
+    "100_rows": {
+      "rows": 100,
+      "total_ms": 23.397,
+      "per_record_ms": 0.234
+    }
+  },
+  "memory_footprint_mb": "not measured",
+  "notes": [
+    "1000-row batch skipped: only 400 test rows available",
+    "Memory footprint not measured. model.pkl is approximately 1.4 MB on disk; runtime RSS was not captured to avoid platform-specific dependencies."
+  ]
+}

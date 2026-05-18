@@ -1,0 +1,57 @@
+{
+  "model": "XGBoost (xgb_selected_features_model.pkl)",
+  "task": "regression",
+  "target": "int_rate (loan interest rate, percentage points)",
+  "dataset_context": {
+    "raw_loan_data_rows": 887379,
+    "processed_rows_used_for_training": 757494,
+    "current_engineered_sample_rows": 2000,
+    "features_after_encoding": 25,
+    "train_test_split": "80/20, random_state=42",
+    "note": "Model trained on 757,494-row dataset. sample_reduction.ipynb later overwrote engineered CSV to 2,000 rows for Streamlit demo. Metrics reported below use the 2,000-row sample with same 80/20 split."
+  },
+  "metrics_on_current_sample": {
+    "test_rmse": 1.2848,
+    "test_mae": 0.9263,
+    "test_r2": 0.9123,
+    "train_rmse": 1.1803,
+    "train_r2": 0.9269
+  },
+  "metrics_from_full_training_run": {
+    "source": "notebook/streamlit_engineered_ml.ipynb output",
+    "training_rows": 605995,
+    "test_rows": 151499,
+    "test_rmse": 0.9795,
+    "test_r2": 0.9506,
+    "note": "These metrics come directly from the notebook that saved the model pkl. MAE not recorded in that run; computed from current sample above."
+  },
+  "inference_latency": {
+    "1_rows": {
+      "rows": 1,
+      "avg_wall_time_ms": 2.147,
+      "per_record_us": 2146.633
+    },
+    "100_rows": {
+      "rows": 100,
+      "avg_wall_time_ms": 2.088,
+      "per_record_us": 20.88
+    },
+    "1000_rows": {
+      "rows": 1000,
+      "avg_wall_time_ms": 2.242,
+      "per_record_us": 2.242
+    }
+  },
+  "shap_latency": {
+    "1_rows": {
+      "rows": 1,
+      "total_ms": 5.8,
+      "per_record_ms": 5.811
+    },
+    "100_rows": {
+      "rows": 100,
+      "total_ms": 18.2,
+      "per_record_ms": 0.182
+    }
+  }
+}
