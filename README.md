@@ -1,12 +1,12 @@
 # Explainable Credit Pricing Intelligence System
 
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.11%2B-blue?logo=python&logoColor=white)
 ![XGBoost](https://img.shields.io/badge/XGBoost-Regression-FF7043?logo=xgboost&logoColor=white)
 ![SHAP](https://img.shields.io/badge/SHAP-Attribution-00C49A)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Serving_Boundary-009688?logo=fastapi&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-Review_Interface-ff4b4b?logo=streamlit&logoColor=white)
 ![pytest](https://img.shields.io/badge/pytest-41_passing-brightgreen?logo=pytest&logoColor=white)
-![scikit-learn](https://img.shields.io/badge/scikit--learn-Pipeline-F7931E?logo=scikit-learn&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-LassoCV-F7931E?logo=scikit-learn&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-Image_Built-2496ED?logo=docker&logoColor=white)
 
 An explainable credit pricing workflow that connects LendingClub borrower records, XGBoost interest-rate prediction, SHAP attribution, a FastAPI serving boundary, local inference benchmarks, and a Streamlit review surface into a repeatable, evidence-backed decision-support system.
@@ -242,17 +242,16 @@ The features_list.pkl acts as a schema contract: every prediction path (Streamli
 
 ## Scale Path
 
-Step 1 (FastAPI serving boundary) is now implemented locally.
-Remaining designed steps are not claimed as implemented.
+The FastAPI serving boundary (Step 1) is implemented locally. Remaining steps are designed extension paths, not claimed as implemented.
 
-1. ~~FastAPI serving endpoint~~ -- **Implemented** (src/api/main.py)
-2. **Prediction persistence** -- PostgreSQL log of every prediction with input hash, output, model version
-3. **Batch scoring worker** -- Celery background worker for bulk pricing jobs
-4. **SHAP caching** -- Redis cache on input hash to eliminate redundant explanation computation
-5. **Model registry** -- MLflow versioned model artifacts with staging/production promotion
-6. **Drift monitoring** -- Feature and prediction distribution monitoring (Evidently or equivalent)
-7. **CI/CD pipeline** -- GitHub Actions: test, benchmark, Docker build, deploy to staging on merge
-8. **Access control and audit logs** -- JWT auth, role-based permissions, full request audit trail
+1. FastAPI serving boundary -- Implemented locally in src/api/main.py
+2. Prediction persistence -- Future hardening step: PostgreSQL log of each prediction with input hash, output, timestamp, and model version
+3. Batch scoring worker -- Future hardening step: background worker for bulk pricing jobs
+4. SHAP caching -- Future hardening step: Redis cache on input hash to reduce repeated explanation computation
+5. Model registry -- Future hardening step: MLflow or equivalent versioned model artifacts with staging and production promotion
+6. Drift monitoring -- Future hardening step: feature and prediction distribution monitoring (Evidently or equivalent)
+7. CI/CD pipeline -- Future hardening step: GitHub Actions for automated tests, benchmarks, and Docker build validation
+8. Access control and audit logs -- Future hardening step: authentication, role-based permissions, and full request audit trail
 
 Full detail at [docs/evidence/scale_path.md](docs/evidence/scale_path.md).
 
@@ -270,7 +269,6 @@ Full detail at [docs/evidence/scale_path.md](docs/evidence/scale_path.md).
 - app/shap_explainer.pkl was regenerated in the L2 hardening pass using shap.Explainer(model); it is now Python 3.13 compatible.
 - The FastAPI serving boundary does not persist predictions and does not include authentication.
 - Docker image was built locally (explainable-credit-pricing:latest, python:3.11-slim). The container has not been run and tested in a live environment.
-- The docs/ folder is currently untracked in git. GitHub evidence claims apply only after docs/ is committed and pushed.
 
 ---
 
