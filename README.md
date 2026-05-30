@@ -384,9 +384,17 @@ docker build -t explainable-credit-pricing .
 docker run -p 8000:8000 explainable-credit-pricing
 ```
 
+Or via docker-compose:
+
+```bash
+docker compose up
+```
+
 Image: `explainable-credit-pricing:latest` | Base: `python:3.11-slim` | Content: 777 MB
 
 The Dockerfile installs dependencies, copies `src/`, model artifacts (`model.pkl`, `features_list.pkl`, `shap_explainer.pkl`), and starts uvicorn on port 8000. The image was built locally and verified to build cleanly. It has not been pushed to a container registry or deployed to a cloud runtime.
+
+`docker-compose.yml` defines the `credit-pricing-api` service and maps port 8000 for local smoke testing without manual `docker run` flags.
 
 ---
 
@@ -478,6 +486,8 @@ Technical boundaries:
 | 41/41 pytest coverage | Done |
 | Inference and API benchmarks (reproducible scripts) | Done |
 | Docker image build (python:3.11-slim) | Done |
+| docker-compose.yml for local service startup | Done |
+| GitHub Actions CI (pytest + compile check on push and pull request) | Done |
 | Streamlit preprocessing bug fix (encoding alignment for term and verification_status) | Done |
 | SHAP explainer regenerated for Python 3.13 compatibility | Done |
 
@@ -489,7 +499,6 @@ Technical boundaries:
 | Authentication and RBAC | JWT-based auth, role-based permissions, full request audit trail |
 | MLflow model registry | Versioned model artifacts with staging and production promotion |
 | Drift monitoring | Feature and prediction distribution tracking (Evidently or equivalent) |
-| CI/CD pipeline | GitHub Actions for automated tests, benchmarks, and Docker build validation |
 | SHAP caching | Redis cache on input hash to reduce repeated explanation computation |
 | Cloud deployment | After security review, dependency audit, and container registry setup |
 
@@ -501,6 +510,9 @@ Full detail: [docs/evidence/scale_path.md](docs/evidence/scale_path.md)
 
 ```
 explainable-loan-interest-prediction/
+├── .github/
+│   └── workflows/
+│       └── ci.yml                    # GitHub Actions: pytest + compile on push
 ├── app/                              # Streamlit interface + model artifacts
 │   ├── app.py                        # Streamlit review interface
 │   ├── model.pkl                     # Trained XGBoost model (~1.4 MB)
@@ -510,8 +522,8 @@ explainable-loan-interest-prediction/
 │   ├── loan_data.csv                 # Raw: 887,379 records
 │   └── interest_rate_df_engineered.csv  # Current: 2,000-row demo sample
 ├── docs/evidence/                    # All measured evidence artifacts
-├── models/                           # Additional model artifacts
-├── notebooks/                        # EDA, preprocessing, and training
+├── models/                           # Source model artifact (xgb_selected_features_model.pkl)
+├── notebooks/                        # EDA, preprocessing, training, and exploration
 │   └── ML_XAI_Engineered_Data.ipynb  # Primary training notebook
 ├── scripts/                          # Reproducible benchmark and evidence scripts
 │   ├── benchmark_inference.py        # Raw model inference latency
@@ -531,6 +543,7 @@ explainable-loan-interest-prediction/
 │   ├── test_model_service.py         # 16 model service tests
 │   └── test_api.py                   # 25 API endpoint tests
 ├── Dockerfile
+├── docker-compose.yml                # Local service startup: credit-pricing-api on port 8000
 ├── .dockerignore
 ├── requirements.txt
 └── README.md
@@ -613,6 +626,7 @@ python docs/evidence/compute_evidence.py
 | [docs/evidence/portfolio_summary.md](docs/evidence/portfolio_summary.md) | Portfolio-ready copy |
 | [docs/evidence/evidence_inventory.md](docs/evidence/evidence_inventory.md) | Complete artifact inventory |
 | [docs/evidence/l2_engineering_upgrade_report.md](docs/evidence/l2_engineering_upgrade_report.md) | L2 service layer: files added, tests, benchmarks, findings |
+| [docs/evidence/resource_profile.md](docs/evidence/resource_profile.md) | Measured latency, unresolved memory profiling, and scaling pressure points |
 
 ---
 

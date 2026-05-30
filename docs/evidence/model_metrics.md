@@ -2,7 +2,7 @@
 
 Generated: 2026-05-18
 Script: docs/evidence/compute_evidence.py
-Model: XGBoost (app/xgb_selected_features_model.pkl → symlinked as app/model.pkl)
+Model: XGBoost (models/xgb_selected_features_model.pkl -- served via app/model.pkl)
 
 ---
 
